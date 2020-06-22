@@ -3,6 +3,10 @@ import CalendarInput from './CalendarInput';
 import './App.css';
 
 function App() {
+  const onSelectDate = (e) => {
+    console.log(e);
+  }
+
   return (
     <div className="App">
       <div className="Rectangle">
@@ -11,7 +15,9 @@ function App() {
           <p className="Rectangle-Subtitle">Enter your exchange date to unlock the tools you need for the next stage of your sale.</p>
         </div>
         <div className="Rectangle-Right Rectangle-Col">
-          <CalendarInput />
+          <CalendarInput
+            onSelectDate={onSelectDate}
+          />
         </div>
       </div>
     </div>

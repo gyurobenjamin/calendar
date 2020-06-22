@@ -98,6 +98,16 @@
     cursor: pointer;
 }
 
+.Calendar__Table__Cell--selected {
+    color: #fff!important;
+    font-weight: bold;
+}
+
+.Calendar__Table__Cell--selected .Calendar__Table__Cell__Circle {
+    background-color: #006cfa;
+    display: block;
+}
+
 .Calendar__Table__Cell__Day {
     position: relative;
 }

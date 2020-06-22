@@ -2,29 +2,30 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import './Calendar.css';
 
-function Week({week, month}) {
+function Week({week, month, onSelect, activeDay}) {
   week.startOf('isoWeek');
   const days = [];
   const w = week.clone();
 
   for(let i = 0; i < 7; i++) {
-
-    console.log(w.format(), month.format());
+    const d = w.clone().add(i, 'days');
     
-    if(!w.isSame(month, 'month')) {
+    if(!d.isSame(month, 'month')) {
       days.push(
         <div className="Calendar__Table__Cell" key={i} />
       );
     } else {
       days.push(
-        <div className="Calendar__Table__Cell Calendar__Table__Cell--active" key={i}>
+        <div
+          className={`Calendar__Table__Cell Calendar__Table__Cell--active ${activeDay && activeDay.format() === d.format() ? "Calendar__Table__Cell--selected" : ""}`}
+          key={i}
+          onClick={() => onSelect(d)}
+        >
           <span className="Calendar__Table__Cell__Circle"></span>
-          <span className="Calendar__Table__Cell__Day">{w.format('D')}</span>
+          <span className="Calendar__Table__Cell__Day">{d.format('D')}</span>
         </div>
       );
     }
-
-    w.add(1, 'days');
   }
 
   return (
@@ -34,7 +35,7 @@ function Week({week, month}) {
   );
 }
 
-function Weeks({month}) {
+function Weeks({month, onSelect, activeDay}) {
   const m = month.clone();
   m.startOf('month');
   const dim = m.daysInMonth();
@@ -44,7 +45,12 @@ function Weeks({month}) {
   const week = m.startOf('isoWeek').clone();
   for(let i = 1; i <= dim; i = i + 7) {
     weeks.push(
-      <Week week={week.clone()} month={month.clone()} />
+      <Week
+        week={week.clone()}
+        month={month.clone()}
+        onSelect={onSelect}
+        activeDay={activeDay}
+      />
     );
     week.add(7, 'days');
   }
@@ -56,7 +62,7 @@ function Weeks({month}) {
   );
 }
 
-function Calendar() {
+function Calendar({onSelectDate, activeDay}) {
   const [activeMonth, setActiveMonth] = useState(moment());
 
   const days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
@@ -69,6 +75,10 @@ function Calendar() {
   const prevMonth = () => {
     activeMonth.add(-1, 'months');
     setActiveMonth(activeMonth.clone());
+  }
+
+  const pickDate = (d) => {
+    onSelectDate(d);
   }
 
   // TODO: Dynamic days
@@ -98,7 +108,11 @@ function Calendar() {
             ))}
           </div>
         </div>
-        <Weeks month={activeMonth} />
+        <Weeks
+          month={activeMonth}
+          onSelect={pickDate}
+          activeDay={activeDay}
+        />
       </div>
     </div>
   );

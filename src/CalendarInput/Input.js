@@ -3,16 +3,14 @@ import React, { useState } from 'react';
 
 import './Input.css';
 
-function Input() {
-  const [date, setDate] = useState('');
-
+function Input({value, onFocus, onBlur}) {
   return (
     <div className="CalendarInput-Input">
-      <select
-        // onFocus={true}
-        // onBlur={true}
-        value={date}
-      ></select>
+      <input
+        onFocus={onFocus}
+        onBlur={onBlur}
+        value={value && value.format('DD/MM/YYYY')}
+      />
     </div>
   );
 }
