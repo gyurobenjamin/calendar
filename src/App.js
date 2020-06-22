@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
+import CalendarInput from './CalendarInput';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Rectangle">
+        <div className="Rectangle-Left Rectangle-Col">
+          <h4 className="Rectangle-Title">Have you sold subject to contract?</h4>
+          <p className="Rectangle-Subtitle">Enter your exchange date to unlock the tools you need for the next stage of your sale.</p>
+        </div>
+        <div className="Rectangle-Right Rectangle-Col">
+          <CalendarInput />
+        </div>
+      </div>
     </div>
   );
 }

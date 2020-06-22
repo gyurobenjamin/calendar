@@ -1,0 +1,103 @@
+.Calendar {
+    width: 392px;
+    height: 347px;
+    border-radius: 4px;
+    box-shadow: 0 0 32px 0 rgba(0, 53, 124, 0.25);
+    border: solid 2px #00357c;
+    background-color: #ffffff;
+}
+
+.Calendar__Header {
+    height: 58px;
+}
+
+.Calendar__Header__Arrow {
+    height: 100%;
+    width: 42px;
+    border-right: solid 1px #d9eafe;
+    float: left;
+    cursor: pointer;
+}
+
+.Calendar__Header__Arrow--right {
+    border-left: solid 1px #d9eafe;
+    float: right;
+}
+
+.Calendar__Header__Title {
+    float: left;
+    text-align: center;
+    display: table;
+    width: calc(100% - 88px);
+}
+
+.Calendar__Header__Title span {
+    line-height: 58px;
+    font-weight: bold;
+}
+
+.Calendar__Table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    display: table;
+    table-layout: fixed;
+}
+
+.Calendar__Table__Row {
+    display: table-row;
+}
+
+.Calendar__Table__Cell {
+    display: table-cell;
+    padding: 0;
+    border-top: solid 1px #d9eafe;
+    height: 47px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.Calendar__Table__Header {
+    display: table-row-group;
+    font-weight: bold;
+}
+
+.Calendar__Table__Body {
+    display: table-row-group;
+}
+
+.Calendar__Table__Body .Calendar__Table__Cell {
+    position: relative;
+}
+
+.Calendar__Table__Cell__Circle {
+    height: 32px;
+    width: 32px;
+    background-color: #d9e9fe;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    margin-left: -16px;
+    top: 50%;
+    margin-top: -16px;
+    display: none;
+}
+
+.Calendar__Table__Body .Calendar__Table__Cell:hover {
+    color: #00357c;
+    font-weight: bold;
+}
+
+.Calendar__Table__Cell:hover .Calendar__Table__Cell__Circle {
+    display: block;
+}
+
+.Calendar__Table__Cell--active {
+    cursor: pointer;
+}
+
+.Calendar__Table__Cell__Day {
+    position: relative;
+}
